@@ -27,7 +27,14 @@
 
 ;;; 逐次平方を使った反復的べき乗プロセス
 ;どんどん分解していく
-(define (fast-expt2 a b n)
-    (cond ((= n 0) 1)
-        ((even? n) (square (fast-expt b (/ n 2))))
-        (else (* b (fast-expt b (- n 1))))))
+;(fast-iter 1 2 10)        = 1 * 2^10
+;(fast-iter 1 4 5)         = 1 * 4^5
+;(fast-iter 4 4 4)         = 4 * 4^4
+;(fast-iter 4 16 2)        = 4 * 16^2
+;(fast-iter 4 256 1)       = 4 * 256^1
+;(fast-iter 1024 256 0)    = 1024 * 256^0
+;1024
+(define (fast-iter a b n)
+    (cond ((= n 0) a)
+        ((even? n) (fast-iter a (square b) (/ n 2)))
+        (else (fast-iter (* a b) b (- n 1)))))
