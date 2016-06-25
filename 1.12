@@ -1,0 +1,7 @@
+#lang racket
+; パスカルの三角形
+(define (element-of-pascal r c)
+  (cond ((= c 1) 1)
+        ((= r c) 1)
+        (else (+ (element-of-pascal (- r 1) (- c 1))
+                 (element-of-pascal (- r 1) c)))))
