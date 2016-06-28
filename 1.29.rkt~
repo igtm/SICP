@@ -1,0 +1,14 @@
+#lang racket
+(define (simpson f a b n)
+  (define (h)
+    (/ (- b a) n))
+  (define (y k)
+    (+ a (* k (h))))
+  (* (/ h 3) (sum y)
+
+
+     (define (sum term a next b)
+       (> a b)
+       0
+       (+ (term a)
+          (sum term (next a) next b)))
