@@ -1,0 +1,3 @@
+#lang racket
+(define (left-branch mobile)
+  (car mobile))
