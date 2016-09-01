@@ -1,3 +1,60 @@
 #lang racket
+(define (make-mobile left right)
+  (list left right))
+
 (define (left-branch mobile)
   (car mobile))
+
+(define (right-branch mobile)
+  (car (cdr mobile)))
+
+(define (make-branch length structure)
+  (list length structure))
+
+(define (branch-length branch)
+  (car branch))
+
+(define (branch-structure branch)
+  (car (cdr branch)))
+
+(define (total-weight mobile)
+  (define (branch-weight branch)
+    (let ((weight (branch-structure branch)))
+    (if (pair? weight)
+        (total-mobile weight)
+        weight)))
+  (define (total-mobile mobile)
+    ( + (branch-weight (left-branch mobile)) (branch-weight  (right-branch mobile))))
+  (total-mobile mobile))
+
+
+(define branch3 (make-branch 3 3))
+(define branch5 (make-branch 5 5))
+(define mobile35 (make-mobile branch3 branch5))
+(define branch3-mobile35 (make-branch 3 mobile35))
+(define mobile-3-35-5 (make-mobile branch3-mobile35 branch5))
+(total-weight mobile-3-35-5)
+
+;(define (is-balanced mobile)
+;  (let ((left (left-branch mobile))
+;        (right (right-branch mobile)))
+;  (if (not (pair? (branch-structure left)))
+;      (branch-weight left
+
+(define (balanced? mobile)
+  (let (( left (branch-left mobile))
+        (right (branch-right mobile)))
+  (if (branch-balanced? mobile)
+      (cond ((not (pair? 
+      
+
+(define (branch-balanced? mobile)
+    (let (( left (branch-left mobile))
+        (right (branch-right mobile)))
+      (= (branch-power? left) (branch-power? right))))
+                  
+(define (branch-power? branch)
+  (let ((structure (branch-structure branch)))
+    (if (not (pair? structure))
+        (* (branch-length structure) (total-weight structure))
+        (* (branch-length structure) structure))))
